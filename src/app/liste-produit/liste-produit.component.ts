@@ -63,7 +63,8 @@ export class ListeProduitComponent implements OnInit {
     /** Bouton Modifier la bouteille */
     editDialog(bouteille:IProduit): void {
         const dialogRef = this.dialog.open(DialogModifComponent, {
-            width: '30%',
+            width: '100%',
+            maxWidth: '300px',
             data:bouteille
         }).afterClosed().subscribe(res=>{
             this.getAllBouteillesCellier();
@@ -75,7 +76,8 @@ export class ListeProduitComponent implements OnInit {
     openDialog(): void {
         this.getAllBouteillesCellier();
         this.dialog.open(DialogBouteilleComponent, {
-            width: '30%',
+            width: '100%',
+            maxWidth: '300px',
             data: this.bouteille
         }).afterClosed().subscribe(res=>{
             this.getAllBouteillesCellier();

@@ -1,7 +1,11 @@
-mat-form-field{
+.mat-form-field{
     width: 100%;
 }
 
 button{
     margin-left: 1vw;
+}
+
+mat-dialog-container {
+    width: 20% !important;
 }
