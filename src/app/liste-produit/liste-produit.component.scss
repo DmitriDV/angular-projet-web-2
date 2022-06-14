@@ -19,11 +19,15 @@ table {
   color:rgb(170, 159, 60);
   font-weight: bold;
 }
+
+.mat-dialog-container {
+    width: 20% !important;
+}
 // .mat-sort-header-container {
 //   align-items: center;
 // }
 section{
-  margin: 70px 4vw 0 4vw;
+  margin: 70px 4vw 4vw 4vw;
 }
 
 table {
@@ -50,7 +54,7 @@ th {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 1vw 0 0 0;
+  padding: 20px 0 0 0;
 }
 
 .bouteille__img{
@@ -59,7 +63,13 @@ th {
 }
 
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 416px) {
+    tr.mat-header-row {
+        height: 5px;
+    }
+    .cdk-overlay-pane {
+        width: 100% !important;
+    }
   .mat-table {
     border: 0;
     vertical-align: middle
@@ -70,7 +80,7 @@ th {
   }
 
   .mat-table .mat-header-cell {
-    border-bottom: 5px solid #ddd;
+   
     display: block;
   }
   
@@ -93,33 +103,36 @@ th {
     
     font-size: .85em;
   }
-  .mat-table .mat-cell:last-child {
+  .mat-table .mat-cell {
     border-bottom: 0;
   }
-    .mat-table .mat-cell:first-child {
-    margin-top: 4%;
+    .mat-table .mat-cell:last-child {
+    height: 100px;
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
   }
 
+  .mat-table .mat-cell:first-child {
+    margin-top: 50px;
+  }
 
   .bouteille__image{
       width: 50vw;
   }
-  
+  td.mat-cell:first-of-type {
+    padding-left: 0;
+  }
+  table {
+
+  }
   td p {
       align-items: center;
   }
   .mat-table .mat-header-cell {
-    
     display: none;
-
   }
  .th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
-     padding-right: 0 !important;
+     padding: 0;
  }
- .mat-table[_ngcontent-sfm-c209] .mat-cell[_ngcontent-sfm-c209]{
-     border-bottom: none;
- }
- .mat-table[_ngcontent-pqo-c209] .mat-cell[_ngcontent-pqo-c209] {
-     border-bottom: none !important;
- }
+
 }
