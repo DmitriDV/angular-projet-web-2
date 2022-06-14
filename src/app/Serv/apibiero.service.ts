@@ -3,6 +3,7 @@ import { IProduit } from '../iproduit';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IListeProduit } from '../iliste-produit';
+import { ICellier } from '../icellier';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,11 @@ export class ApibieroService {
     /** GET requête pour afficher les bouteilles du cellier */
     getBouteillesCellier():Observable<IListeProduit>{
         return this.http.get<IListeProduit>(this.url);
+    }
+
+    /** GET requête pour afficher les celliers */
+    getCelliers():Observable<ICellier>{
+        return this.http.get<ICellier>(this.url+'celliers');
     }
 
     /** POST requête pour modifier la bouteille dans le cellier */

@@ -1,0 +1,138 @@
+table {
+    width: 100%;
+  }
+
+.liste__btn{
+  background-color: rgb(126, 10, 10);
+  color: rgb(233, 236, 205);
+  margin-right: 10px;
+}
+
+.liste__btn-saq{
+  background-color:  rgb(126, 10, 10);
+  color:rgb(170, 159, 60);
+  font-weight: bold;
+}
+
+.liste__btn-saq-creer{
+  background-color: rgb(79, 2, 2);
+  color:rgb(170, 159, 60);
+  font-weight: bold;
+}
+
+.mat-dialog-container {
+    width: 20% !important;
+}
+// .mat-sort-header-container {
+//   align-items: center;
+// }
+section{
+  margin: 70px 4vw 4vw 4vw;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  background-color: rgb(79, 2, 2);
+  color:rgb(170, 159, 60);
+  font-weight: bolder;
+  
+}
+
+// td p {
+//   margin-left: 1vw;
+// }
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.create-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 20px 0 0 0;
+}
+
+.bouteille__img{
+  margin: 0.5vw 0;
+  width: auto;
+}
+
+
+@media screen and (max-width: 416px) {
+    tr.mat-header-row {
+        height: 5px;
+    }
+    .cdk-overlay-pane {
+        width: 100% !important;
+    }
+  .mat-table {
+    border: 0;
+    vertical-align: middle
+  }
+
+  .mat-table caption {
+    font-size: 1em;
+  }
+
+  .mat-table .mat-header-cell {
+   
+    display: block;
+  }
+  
+  .mat-table .mat-cell {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 1em;
+    text-align: center;
+    font-weight: bold;
+    height:auto;
+    margin-bottom: 4%;
+  }
+
+  .mat-table .mat-cell:before {
+    
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
+    font-weight: normal;
+    
+    font-size: .85em;
+  }
+  .mat-table .mat-cell {
+    border-bottom: 0;
+  }
+    .mat-table .mat-cell:last-child {
+    height: 100px;
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .mat-table .mat-cell:first-child {
+    margin-top: 50px;
+  }
+
+  .bouteille__image{
+      width: 50vw;
+  }
+  td.mat-cell:first-of-type {
+    padding-left: 0;
+  }
+  table {
+
+  }
+  td p {
+      align-items: center;
+  }
+  .mat-table .mat-header-cell {
+    display: none;
+  }
+ .th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+     padding: 0;
+ }
+
+}

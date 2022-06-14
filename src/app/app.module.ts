@@ -25,6 +25,11 @@ import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CellierComponent } from './cellier/cellier.component';
+import { ProfilComponent } from './profil/profil.component';
+import { DialogModifCellierComponent } from './dialog-modif-cellier/dialog-modif-cellier.component';
+import { DialogModifMotPasseComponent } from './dialog-modif-mot-passe/dialog-modif-mot-passe.component';
+import { DialogAjoutCellierComponent } from './dialog-ajout-cellier/dialog-ajout-cellier.component';
+import { DialogModifUsagerComponent } from './dialog-modif-usager/dialog-modif-usager.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,12 @@ import { CellierComponent } from './cellier/cellier.component';
     DetailsProduitComponent,
     DialogBouteilleComponent,
     DialogModifComponent,
-    CellierComponent
+    CellierComponent,
+    ProfilComponent,
+    DialogModifCellierComponent,
+    DialogModifMotPasseComponent,
+    DialogAjoutCellierComponent,
+    DialogModifUsagerComponent
   ],
   entryComponents:[DialogBouteilleComponent],
   imports: [

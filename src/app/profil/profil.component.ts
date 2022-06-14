@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../Auth/auth.service';
-import { IProduit } from '../iproduit';
 import { ApibieroService } from '../Serv/apibiero.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogModifComponent } from '../dialog-modif/dialog-modif.component';
@@ -8,20 +7,22 @@ import { DialogBouteilleComponent } from '../dialog-bouteille/dialog-bouteille.c
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { IUsager } from './../iusager';
+import { ICellier } from './../icellier';
 
 @Component({
-  selector: 'app-liste-produit',
-  templateUrl: './liste-produit.component.html',
-  styleUrls: ['./liste-produit.component.scss']
+  selector: 'app-profil',
+  templateUrl: './profil.component.html',
+  styleUrls: ['./profil.component.scss']
 })
-    
-export class ListeProduitComponent implements OnInit {
-    bouteille !: IProduit;
+export class ProfilComponent implements OnInit {
+    usager !: IUsager;
+    cellier !: ICellier;
 
-    estEditable:boolean= false;
+    //estEditable:boolean= false;
     
-    displayedColumns: string[] = ["image","nom","quantite","pays", "type", "millesime", "voir", "action" ];
-    dataSource !: MatTableDataSource<IProduit>;
+    displayedColumns: string[] = ["nom", "adresse", "action"];
+    dataSource !: MatTableDataSource<ICellier>;
 
     @ViewChild(MatPaginator) paginator !: MatPaginator;
     @ViewChild(MatSort) sort !: MatSort;
@@ -31,13 +32,13 @@ export class ListeProduitComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getAllBouteillesCellier();
-        this.authServ.setTitre("Mon cellier");
+        this.getMesCelliers();
+        this.authServ.setTitre("Mes celliers");
     }
 
-    /** Liste des bouteilles du cellier */
-    getAllBouteillesCellier(){
-        this.bieroServ.getBouteillesCellier()
+    /** Liste des celliers d'usager */
+    getMesCelliers(){
+        this.bieroServ.getCelliers()
         .subscribe({
             next:(res)=>{
                 this.dataSource = new MatTableDataSource(res.data);
@@ -61,57 +62,50 @@ export class ListeProduitComponent implements OnInit {
     }
 
     /** Bouton Modifier la bouteille */
-    editDialog(bouteille:IProduit): void {
+    editDialogCellier(cellier:ICellier): void {
         const dialogRef = this.dialog.open(DialogModifComponent, {
             width: '100%',
             maxWidth: '370px',
-            maxHeight: '540px',
-            data:bouteille
+            data:cellier
         }).afterClosed().subscribe(res=>{
-            this.getAllBouteillesCellier();
+            this.getMesCelliers();
         });
         
     }
 
     /** Bouton Ajouter une bouteille */
-    openDialog(): void {
-        this.getAllBouteillesCellier();
+    createDialogCellier(): void {
+        this.getMesCelliers();
         this.dialog.open(DialogBouteilleComponent, {
             width: '100%',
             maxWidth: '370px',
-            maxHeight: '540px',
-            data: this.bouteille
+            data: this.cellier
         }).afterClosed().subscribe(res=>{
-            this.getAllBouteillesCellier();
+            this.getMesCelliers();
         });
     }
 
-    /** Bouton Augmenter le nombre de bouteilles */
-    ajouterQuantiteBouteilleCellier(data:IProduit){
-        this.bieroServ.getBouteillesCellierQuantiteAjoutee(data).subscribe({
-        next:(res)=>{
-            this.dataSource = new MatTableDataSource(res.data);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        },
-        error:(err)=>{
-            alert("erreur")
-        }
-    })
+    /** Bouton Modifier les informations de l'usager' */
+    editDialogUsager(usager:IUsager): void {
+        const dialogRef = this.dialog.open(DialogModifComponent, {
+            width: '100%',
+            maxWidth: '370px',
+            data:usager
+        }).afterClosed().subscribe(res=>{
+            this.getMesCelliers();
+        });
+        
     }
 
-    /** Bouton Réduire le nombre de bouteilles */
-    boireQuantiteBouteilleCellier(data:IProduit){
-        this.bieroServ.deleteBouteillesCellierQuantiteAjoutee(data).subscribe({
-        next:(res)=>{
-            this.dataSource = new MatTableDataSource(res.data);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        },
-        error:(err)=>{
-            alert("erreur")
-        }
-    })
+    /** Bouton Modifier le mot de passe */
+    editDialogMotPasse(usager:IUsager): void {
+        const dialogRef = this.dialog.open(DialogModifComponent, {
+            width: '100%',
+            maxWidth: '370px',
+            data:usager
+        }).afterClosed().subscribe(res=>{
+            this.getMesCelliers();
+        });
+        
     }
-
 }
