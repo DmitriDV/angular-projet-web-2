@@ -65,7 +65,10 @@ export class ListeProduitComponent implements OnInit {
         const dialogRef = this.dialog.open(DialogModifComponent, {
             width: '100%',
             maxWidth: '370px',
+<<<<<<< HEAD
             maxHeight: '540px',
+=======
+>>>>>>> 2a69b6900e0fcf68676b8e522e0ef0033123f3a1
             data:bouteille
         }).afterClosed().subscribe(res=>{
             this.getAllBouteillesCellier();
@@ -79,7 +82,10 @@ export class ListeProduitComponent implements OnInit {
         this.dialog.open(DialogBouteilleComponent, {
             width: '100%',
             maxWidth: '370px',
+<<<<<<< HEAD
             maxHeight: '540px',
+=======
+>>>>>>> 2a69b6900e0fcf68676b8e522e0ef0033123f3a1
             data: this.bouteille
         }).afterClosed().subscribe(res=>{
             this.getAllBouteillesCellier();

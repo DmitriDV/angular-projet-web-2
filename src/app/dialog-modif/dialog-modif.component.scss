@@ -7,6 +7,12 @@ button{
 input.ng-invalid, textarea.ng-invalid{
     color: #f00;
 }
+
 input.ng-valid, textarea.ng-valid{
     color: rgb(41, 3, 145);
+}
+
+.mat-success {
+    background-color: green;
+    color: #fff;
 }
