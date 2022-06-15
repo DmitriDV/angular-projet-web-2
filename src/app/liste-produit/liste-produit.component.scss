@@ -438,9 +438,10 @@ th {
 }
 th.mat-header-cell, .mat-sort-header-container {
     text-align: center;
+    justify-content: center !important;
 } 
-th.mat-sort-header {
-    justify-content: center;
+th.mat-sort-header-container {
+    justify-content: center !important;
 }
 th.mat-header-cell {
     padding: 2px;
