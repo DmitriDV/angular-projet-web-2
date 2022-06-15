@@ -20,7 +20,7 @@
                     </ng-container>
                     <ng-container matColumnDef="nom">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header="nom" > Nom </th>
-                        <td mat-cell *matCellDef="let bouteille"> {{bouteille.nom}} </td>
+                        <td mat-cell class="left" *matCellDef="let bouteille"> {{bouteille.nom}} </td>
                     </ng-container>
                     <ng-container matColumnDef="quantite">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header="quantite"> Quantité </th>
@@ -47,7 +47,7 @@
                     <!--Boutons d'action-->
                     <ng-container matColumnDef="action">
                         <th class="centre" mat-header-cell *matHeaderCellDef>Action</th>
-                        <td class="centre" mat-cell *matCellDef="let bouteille"> 
+                        <td class="centre buttons" mat-cell *matCellDef="let bouteille"> 
                             <button class="liste__btn" routerLink="" (click)="ajouterQuantiteBouteilleCellier(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
                                 <mat-icon>add</mat-icon>
                             </button>
