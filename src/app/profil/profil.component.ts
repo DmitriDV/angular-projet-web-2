@@ -8,7 +8,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IUsager } from './../iusager';
+import { DialogModifCellierComponent } from '../dialog-modif-cellier/dialog-modif-cellier.component';
+import { DialogAjoutCellierComponent } from '../dialog-ajout-cellier/dialog-ajout-cellier.component';
+import { DialogModifUsagerComponent } from '../dialog-modif-usager/dialog-modif-usager.component';
+import { DialogModifMotPasseComponent } from '../dialog-modif-mot-passe/dialog-modif-mot-passe.component';
+import { DialogSupprimCellierComponent } from '../dialog-supprim-cellier/dialog-supprim-cellier.component';
+import { IProduit } from '../iproduit';
 import { ICellier } from './../icellier';
+import { IListeUsager } from './../iliste-usager';
 
 @Component({
   selector: 'app-profil',
@@ -21,8 +28,11 @@ export class ProfilComponent implements OnInit {
 
     //estEditable:boolean= false;
     
-    displayedColumns: string[] = ["nom", "adresse", "action"];
-    dataSource !: MatTableDataSource<ICellier>;
+    displayedColumnsCellier: string[] = ["nom", "adresse", "action"];
+    displayedColumnsUsager: string[] = ["nom", "phone", "adresse", "id_ville"]
+    //dataSourceCellier !: MatTableDataSource<ICellier>;
+    dataSourceCellier !: MatTableDataSource<ICellier>;
+    dataSourceUsager !: MatTableDataSource<IUsager>;
 
     @ViewChild(MatPaginator) paginator !: MatPaginator;
     @ViewChild(MatSort) sort !: MatSort;
@@ -33,6 +43,7 @@ export class ProfilComponent implements OnInit {
 
     ngOnInit(): void {
         this.getMesCelliers();
+        this.getMonProfil();
         this.authServ.setTitre("Mes celliers");
     }
 
@@ -41,9 +52,9 @@ export class ProfilComponent implements OnInit {
         this.bieroServ.getCelliers()
         .subscribe({
             next:(res)=>{
-                this.dataSource = new MatTableDataSource(res.data);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
+                this.dataSourceCellier = new MatTableDataSource(res.data);
+                this.dataSourceCellier.paginator = this.paginator;
+                this.dataSourceCellier.sort = this.sort;
             },
             error:(err)=>{
                 alert("erreur")
@@ -51,34 +62,69 @@ export class ProfilComponent implements OnInit {
         })
     }
 
+    /** Liste d'information d'usager */
+    getMonProfil() {
+        this.bieroServ.getProfil().subscribe((data: IUsager) => {this.usager = data});
+        console.log(this.usager);
+        
+    }
+    //getMonProfil(){
+    //    this.bieroServ.getProfil()
+    //    .subscribe({
+    //        next:(res)=>{
+    //            this.dataSourceUsager = new MatTableDataSource(res.data);
+    //            console.log(res.data);
+    //            
+    //            this.dataSourceUsager.paginator = this.paginator;
+    //            this.dataSourceUsager.sort = this.sort;
+    //        },
+    //        error:(err)=>{
+    //            alert("erreur")
+    //        }
+    //    })
+    //}
+
     /** Filtre */
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
-        this.dataSource.filter = filterValue.trim().toLowerCase();
+        this.dataSourceCellier.filter = filterValue.trim().toLowerCase();
 
-        if (this.dataSource.paginator) {
-            this.dataSource.paginator.firstPage();
+        if (this.dataSourceCellier.paginator) {
+            this.dataSourceCellier.paginator.firstPage();
         }
     }
 
     /** Bouton Modifier la bouteille */
-    editDialogCellier(cellier:ICellier): void {
-        const dialogRef = this.dialog.open(DialogModifComponent, {
+    editDialogCellier(cellier:IProduit): void {
+        const dialogRef = this.dialog.open(DialogModifCellierComponent, {
             width: '100%',
             maxWidth: '370px',
+            maxHeight: '540px',
             data:cellier
         }).afterClosed().subscribe(res=>{
             this.getMesCelliers();
         });
-        
+    }
+
+    /** Bouton Modifier la bouteille */
+    deleteDialogCellier(cellier:IProduit): void {
+        const dialogRef = this.dialog.open(DialogSupprimCellierComponent, {
+            width: '100%',
+            maxWidth: '370px',
+            maxHeight: '370px',
+            data:cellier
+        }).afterClosed().subscribe(res=>{
+            this.getMesCelliers();
+        });
     }
 
     /** Bouton Ajouter une bouteille */
     createDialogCellier(): void {
         this.getMesCelliers();
-        this.dialog.open(DialogBouteilleComponent, {
+        this.dialog.open(DialogAjoutCellierComponent, {
             width: '100%',
             maxWidth: '370px',
+            maxHeight: '540px',
             data: this.cellier
         }).afterClosed().subscribe(res=>{
             this.getMesCelliers();
@@ -87,24 +133,26 @@ export class ProfilComponent implements OnInit {
 
     /** Bouton Modifier les informations de l'usager' */
     editDialogUsager(usager:IUsager): void {
-        const dialogRef = this.dialog.open(DialogModifComponent, {
+        const dialogRef = this.dialog.open(DialogModifUsagerComponent, {
             width: '100%',
             maxWidth: '370px',
+            maxHeight: '540px',
             data:usager
         }).afterClosed().subscribe(res=>{
-            this.getMesCelliers();
+            this.getMonProfil();
         });
         
     }
 
     /** Bouton Modifier le mot de passe */
     editDialogMotPasse(usager:IUsager): void {
-        const dialogRef = this.dialog.open(DialogModifComponent, {
+        const dialogRef = this.dialog.open(DialogModifMotPasseComponent, {
             width: '100%',
             maxWidth: '370px',
+            maxHeight: '540px',
             data:usager
         }).afterClosed().subscribe(res=>{
-            this.getMesCelliers();
+            this.getMonProfil();
         });
         
     }

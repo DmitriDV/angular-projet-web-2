@@ -30,48 +30,54 @@ import { DialogModifCellierComponent } from './dialog-modif-cellier/dialog-modif
 import { DialogModifMotPasseComponent } from './dialog-modif-mot-passe/dialog-modif-mot-passe.component';
 import { DialogAjoutCellierComponent } from './dialog-ajout-cellier/dialog-ajout-cellier.component';
 import { DialogModifUsagerComponent } from './dialog-modif-usager/dialog-modif-usager.component';
+import { DialogSupprimCellierComponent } from './dialog-supprim-cellier/dialog-supprim-cellier.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AccueilComponent,
-    ListeProduitComponent,
-    EnteteComponent,
-    NonTrouveComponent,
-    DetailsProduitComponent,
-    DialogBouteilleComponent,
-    DialogModifComponent,
-    CellierComponent,
-    ProfilComponent,
-    DialogModifCellierComponent,
-    DialogModifMotPasseComponent,
-    DialogAjoutCellierComponent,
-    DialogModifUsagerComponent
-  ],
-  entryComponents:[DialogBouteilleComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    BrowserAnimationsModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatInputModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatTabsModule
-  ],
+    declarations: [
+        AppComponent,
+        AccueilComponent,
+        ListeProduitComponent,
+        EnteteComponent,
+        NonTrouveComponent,
+        DetailsProduitComponent,
+        DialogBouteilleComponent,
+        DialogModifComponent,
+        CellierComponent,
+        ProfilComponent,
+        DialogModifCellierComponent,
+        DialogModifMotPasseComponent,
+        DialogAjoutCellierComponent,
+        DialogModifUsagerComponent,
+        DialogSupprimCellierComponent
+    ],
+    entryComponents:[DialogBouteilleComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FlexLayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatTableModule,
+        MatButtonModule,
+        MatIconModule,
+        MatToolbarModule,
+        BrowserAnimationsModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatInputModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatCardModule,
+        MatListModule
+    ],
 
-  
-  providers: [],
-  bootstrap: [AppComponent]
+    
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
