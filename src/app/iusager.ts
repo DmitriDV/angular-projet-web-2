@@ -1,8 +1,10 @@
 export interface IUsager {
-    id: string; //id usager
+    data: IUsager[];
+    usager_id_usager: string;
+    usager_nom: string;
+    courriel: string;
+    phone: string;
+    usager_adresse: string;
     nom: string;
-    type: string;
-    image: string;
-    code_saq: string;
-    image_url: string
+    image_url: string;
 }

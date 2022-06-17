@@ -23,16 +23,16 @@ import { IListeUsager } from './../iliste-usager';
   styleUrls: ['./profil.component.scss']
 })
 export class ProfilComponent implements OnInit {
-    usager !: IUsager;
+    usager !:Array<IUsager>;
     cellier !: ICellier;
 
     //estEditable:boolean= false;
     
     displayedColumnsCellier: string[] = ["nom", "adresse", "action"];
-    displayedColumnsUsager: string[] = ["nom", "phone", "adresse", "id_ville"]
+    //displayedColumnsUsager: string[] = ["nom", "phone", "adresse", "id_ville"]
     //dataSourceCellier !: MatTableDataSource<ICellier>;
     dataSourceCellier !: MatTableDataSource<ICellier>;
-    dataSourceUsager !: MatTableDataSource<IUsager>;
+    //dataSourceUsager !: MatTableDataSource<IUsager>;
 
     @ViewChild(MatPaginator) paginator !: MatPaginator;
     @ViewChild(MatSort) sort !: MatSort;
@@ -64,9 +64,18 @@ export class ProfilComponent implements OnInit {
 
     /** Liste d'information d'usager */
     getMonProfil() {
-        this.bieroServ.getProfil().subscribe((data: IUsager) => {this.usager = data});
-        console.log(this.usager);
-        
+
+        this.bieroServ.getProfil()
+        .subscribe({
+            next:(res)=>{
+                this.usager = res.data;
+                console.log(this.usager);
+
+            },
+            error:(err)=>{
+                alert("erreur")
+            }
+        })
     }
     //getMonProfil(){
     //    this.bieroServ.getProfil()
@@ -83,7 +92,7 @@ export class ProfilComponent implements OnInit {
     //        }
     //    })
     //}
-
+   
     /** Filtre */
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
