@@ -45,7 +45,7 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })
         };
-        return this.http.post<IProduit>(this.url+'bouteille/'+ data.id, data, httpOption);
+        return this.http.post<IProduit>(this.url+'bouteille/bouteille/'+ data.id, data, httpOption);
     }
 
     /** PUT requête pour ajouter la bouteille dans le cellier */
@@ -56,7 +56,7 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })
         };
-        return this.http.put<IProduit>(this.url+'bouteille/', data, httpOption);
+        return this.http.put<IProduit>(this.url+'/bouteille', data, httpOption);
     }
 
     /** GET requête pour afficher la gamme de bouteilles importées de la SAQ */
@@ -73,7 +73,7 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })                                                                                                    
         };                                                                                                                  
-        return this.http.put<IListeProduit>(this.url+'bouteille/'+data.id_bouteille_cellier+"/quantite/",httpOption);
+        return this.http.put<IListeProduit>(this.url+'/bouteille/bouteille/'+data.id_bouteille_cellier+"/quantite/",httpOption);
     }
 
     /** PUT requête pour reduire la quantité de bouteilles avec le même id dans le cellier */
@@ -84,7 +84,7 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })                                                                                               
         };                                                                                                                 
-        return this.http.delete<IListeProduit>(this.url+'bouteille/'+data.id_bouteille_cellier+"/quantite/",httpOption);
+        return this.http.delete<IListeProduit>(this.url+'bouteille/bouteille/'+data.id_bouteille_cellier+"/quantite/",httpOption);
     }
 
     /** GET requête pour afficher la bouteille */
