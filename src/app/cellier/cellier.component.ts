@@ -1,4 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../Auth/auth.service';
+import { IProduit } from '../iproduit';
+import { ApibieroService } from '../Serv/apibiero.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogModifComponent } from '../dialog-modif/dialog-modif.component';
+import { DialogBouteilleComponent } from '../dialog-bouteille/dialog-bouteille.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ProfilComponent } from '../profil/profil.component';
+import { Observable } from 'rxjs';
+import { IListeProduit } from '../iliste-produit';
+import { DataService } from '../Data/data.service';
+
+
+
 
 @Component({
   selector: 'app-cellier',
@@ -6,10 +22,110 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cellier.component.scss']
 })
 export class CellierComponent implements OnInit {
+    bouteille !: IProduit;
+    cellierData: string;
 
-  constructor() { }
+    estEditable:boolean= false;
+    
+    displayedColumns: string[] = ["image","nom","quantite","pays", "type", "millesime", "voir", "action" ];
+    dataSource !: MatTableDataSource<IProduit>;
 
-  ngOnInit(): void {
-  }
+    @ViewChild(MatPaginator) paginator !: MatPaginator;
+    @ViewChild(MatSort) sort !: MatSort;
+
+    constructor(
+        private authServ: AuthService,
+        private bieroServ: ApibieroService,
+        public dialog: MatDialog,
+        private data: DataService
+    ) { 
+
+    }
+
+    ngOnInit(): void {
+        this.getCeCellier();
+        this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
+        this.authServ.setTitre("Mon cellier");
+    }
+
+    /** Liste des bouteilles du cellier */
+    getCeCellier() {
+        
+        this.bieroServ.getBouteillesCellier()
+        .subscribe({
+            next:(res)=>{
+                this.dataSource = new MatTableDataSource(res.data);
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
+            },
+            error:(err)=>{
+                alert("erreur")
+            }
+        })
+    }
+
+    /** Filtre */
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
+    }
+
+    /** Bouton Modifier la bouteille */
+    editDialog(bouteille:IProduit): void {
+        const dialogRef = this.dialog.open(DialogModifComponent, {
+            width: '100%',
+            maxWidth: '370px',
+            maxHeight: '540px',
+            data:bouteille
+        }).afterClosed().subscribe(res=>{
+            this.getCeCellier();
+        });
+        
+    }
+
+    /** Bouton Ajouter une bouteille */
+    openDialog(): void {
+        this.getCeCellier();
+        this.dialog.open(DialogBouteilleComponent, {
+            width: '100%',
+            maxWidth: '370px',
+            maxHeight: '540px',
+            data: this.bouteille
+        }).afterClosed().subscribe(res=>{
+            this.getCeCellier();
+        });
+    }
+
+    /** Bouton Augmenter le nombre de bouteilles */
+    ajouterQuantiteBouteilleCellier(data:IProduit){
+        this.bieroServ.getBouteillesCellierQuantiteAjoutee(data).subscribe({
+        next:(res)=>{
+            this.dataSource = new MatTableDataSource(res.data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        },
+        error:(err)=>{
+            alert("erreur")
+        }
+    })
+    }
+
+    /** Bouton Réduire le nombre de bouteilles */
+    boireQuantiteBouteilleCellier(data:IProduit){
+        this.bieroServ.deleteBouteillesCellierQuantiteAjoutee(data).subscribe({
+        next:(res)=>{
+            this.dataSource = new MatTableDataSource(res.data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        },
+        error:(err)=>{
+            alert("erreur")
+        }
+    })
+    }
 
 }

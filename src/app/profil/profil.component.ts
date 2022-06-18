@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { AuthService } from '../Auth/auth.service';
 import { ApibieroService } from '../Serv/apibiero.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +16,9 @@ import { DialogSupprimCellierComponent } from '../dialog-supprim-cellier/dialog-
 import { IProduit } from '../iproduit';
 import { ICellier } from './../icellier';
 import { IListeUsager } from './../iliste-usager';
+import { DataService } from '../Data/data.service';
+
+
 
 @Component({
   selector: 'app-profil',
@@ -26,25 +29,33 @@ export class ProfilComponent implements OnInit {
     usager !:Array<IUsager>;
     cellier !: ICellier;
 
-    //estEditable:boolean= false;
-    
-    displayedColumnsCellier: string[] = ["nom", "adresse", "action"];
-    //displayedColumnsUsager: string[] = ["nom", "phone", "adresse", "id_ville"]
-    //dataSourceCellier !: MatTableDataSource<ICellier>;
-    dataSourceCellier !: MatTableDataSource<ICellier>;
-    //dataSourceUsager !: MatTableDataSource<IUsager>;
 
+    displayedColumnsCellier: string[] = ["nom", "adresse", "action"];
+    dataSourceCellier !: MatTableDataSource<ICellier>;
+    cellierData: string;
+    
     @ViewChild(MatPaginator) paginator !: MatPaginator;
     @ViewChild(MatSort) sort !: MatSort;
 
-    constructor(private authServ:AuthService, private bieroServ:ApibieroService, public dialog: MatDialog ) { 
-
+    constructor(
+        private authServ: AuthService,
+        private bieroServ: ApibieroService,
+        public dialog: MatDialog,
+        private data: DataService
+    ) { 
+        
     }
 
     ngOnInit(): void {
+        this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
+
         this.getMesCelliers();
         this.getMonProfil();
         this.authServ.setTitre("Mes celliers");
+    }
+
+    newCellierData(idCellier: string) {
+        this.data.changeCellier(idCellier);
     }
 
     /** Liste des celliers d'usager */
@@ -61,6 +72,21 @@ export class ProfilComponent implements OnInit {
             }
         })
     }
+
+    /** Afficher le cellier avec id du cellier */
+    // getCeCellier(cellier:IProduit) {
+    //     this.cellierComponent.getCeCellier(cellier)
+    //     .subscribe({
+    //         next:(res)=>{
+    //             this.dataSourceCellier = new MatTableDataSource(res.data);
+    //             this.dataSourceCellier.paginator = this.paginator;
+    //             this.dataSourceCellier.sort = this.sort;
+    //         },
+    //         error:(err)=>{
+    //             alert("erreur")
+    //         }
+    //     })
+    // }
 
     /** Liste d'information d'usager */
     getMonProfil() {
