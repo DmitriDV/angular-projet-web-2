@@ -80,7 +80,7 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })                                                                                                    
         };                                                                                                                  
-        return this.http.put<IListeProduit>(this.url+'cellier/cellier/'+data.id_cellier+"/"+data.id_bouteille_cellier+"/"+data.id_achats+"/quantite/",httpOption);
+        return this.http.put<IListeProduit>(this.url+'cellier/cellier/'+data.id_cellier+"/"+data.id_bouteille+"/"+data.id_achats+"/quantite/",httpOption);
     }
 
         /** SUPPRIMER ***************************************************************************/
@@ -103,7 +103,7 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })                                                                                               
         };                                                                                                                 
-        return this.http.delete<IListeProduit>(this.url+'cellier/cellier/'+data.id_cellier+"/"+data.id_bouteille_cellier+"/"+data.id_achats+"/quantite/",httpOption);
+        return this.http.delete<IListeProduit>(this.url+'cellier/cellier/'+data.id_cellier+"/"+data.id_bouteille+"/"+data.id_achats+"/quantite/",httpOption);
     }
 
     /** SUPPRIMER ***************************************************************************/
