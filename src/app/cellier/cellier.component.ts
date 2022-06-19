@@ -113,7 +113,9 @@ export class CellierComponent implements OnInit {
     }
 
     /** Bouton Augmenter le nombre de bouteilles */
-    ajouterQuantiteBouteilleCellier(data:IProduit){
+    ajouterQuantiteBouteilleCellier(data: IProduit) {
+        console.log(data);
+        
         this.bieroServ.getBouteillesCellierQuantiteAjoutee(data).subscribe({
         next:(res)=>{
             this.dataSource = new MatTableDataSource(res.data);

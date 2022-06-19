@@ -5,6 +5,10 @@
     <div class="create-btn">
         <a class="liste__btn-saq-creer fill" mat-raised-button routerLink="" (click)="openDialog()">Ajouter une bouteille</a>
     </div>
+    <!--Bouton Voir mes celliers-->
+    <div class="create-btn">
+        <a class=""  routerLink="/usager" >Voir mes celliers</a>
+    </div>
     <mat-form-field appearance="standard">
     <!--Filtre-->
     <mat-label>Filter</mat-label>
@@ -29,7 +33,7 @@
             </ng-container>
             <ng-container matColumnDef="pays">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header="pays"> Pays </th>
-                <td mat-cell *matCellDef="let bouteille"> {{bouteille.pays}} </td>
+                <td mat-cell *matCellDef="let bouteille"> {{bouteille.pays_nom}} </td>
             </ng-container>
             <ng-container matColumnDef="type">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header="type"> Type </th>

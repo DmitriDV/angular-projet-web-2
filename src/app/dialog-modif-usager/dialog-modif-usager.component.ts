@@ -53,7 +53,7 @@ export class DialogModifUsagerComponent implements OnInit {
     modifierBiere():void{
         if(this.modifierBouteilleForm.valid){
             let bouteille: IProduit = this.modifierBouteilleForm.value;  
-            bouteille.id = this.editData.id_bouteille_cellier;
+            bouteille.id = this.editData.id_cellier;
             this.bieroServ.modifierBouteille(bouteille).subscribe({
             next:(reponse)=>{
                 this.dialogRef.close('mod');  

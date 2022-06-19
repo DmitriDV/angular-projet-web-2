@@ -1,7 +1,8 @@
 export interface IProduit {
+    id_cellier:string;
     id_bouteille_cellier:string;
-    id_bouteille:string;
-    date_achat:string;
+    date_achat: string;
+    id_achats: string;
     garde_jusqua:string;
     notes:string;
     prix:string // Non obligatoire
