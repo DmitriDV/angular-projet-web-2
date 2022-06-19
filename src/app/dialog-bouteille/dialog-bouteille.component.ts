@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ApibieroService } from '../Serv/apibiero.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IProduit } from '../iproduit';
+import { DataService } from '../Data/data.service';
 
 @Component({
     selector: 'app-dialog-bouteille',
@@ -15,12 +16,16 @@ export class DialogBouteilleComponent implements OnInit {
     creerBouteilleForm!:FormGroup;
     bouteilles: any;
     getBouteilleId: any;
+    cellierData: string;
+    id_cellier: string;
 
     constructor(
                     private formBuilder: FormBuilder,
                     public dialogRef: MatDialogRef<DialogBouteilleComponent>,
                     @Inject(MAT_DIALOG_DATA) bouteille: IProduit,
-                    private bieroServ: ApibieroService
+                    private bieroServ: ApibieroService,
+                    private data: DataService
+                    
                 ) { }
 
     /** Modèles d'expression régulière */
@@ -32,6 +37,9 @@ export class DialogBouteilleComponent implements OnInit {
     ngOnInit(): void {
         /** Obtenir une nomenclature des bouteilles importées de la SAQ */
         this.bieroServ.getListeBouteilles().subscribe((data: any) => { this.bouteilles = data.data; })
+        
+        this.data.ceCellierData.subscribe(cellierData => this.id_cellier = cellierData);
+        console.log(this.id_cellier);
         
         /** Forme et validation des données saisies */
         this.creerBouteilleForm = this.formBuilder.group({
@@ -46,10 +54,13 @@ export class DialogBouteilleComponent implements OnInit {
     }
 
     /** Fonction pour ajouter une bouteille au cellier */
-    ajouterBouteille():void{
+    ajouterBouteille(): void{        
         if (this.creerBouteilleForm.valid) {
             this.creerBouteilleForm.value.id_bouteille = this.getBouteilleId;
-            let bouteilles:any = this.creerBouteilleForm.value;  
+            let bouteilles: any = this.creerBouteilleForm.value;
+            bouteilles.value.id_cellier = this.id_cellier;
+            console.log(this.id_cellier);
+            
             this.bieroServ.ajouterBouteille(bouteilles).subscribe({
                 next:(reponse)=>{
                     this.dialogRef.close('add');  

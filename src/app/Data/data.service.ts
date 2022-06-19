@@ -9,12 +9,12 @@ import { Params } from '@angular/router';
     
 export class DataService {
 
-    //private cellierSource = new BehaviorSubject<string>('1');
-    //ceCellierData = this.cellierSource.asObservable();
-    //
-    //constructor() { }
-//
-    //changeCellier(cellierData: string) {
-    //    this.cellierSource.next(cellierData)
-    //}
+    private cellierSource = new BehaviorSubject<string>('1');
+    ceCellierData = this.cellierSource.asObservable();
+    
+    constructor() { }
+
+    changeCellier(cellierData: string) {
+        this.cellierSource.next(cellierData)
+    }
 }

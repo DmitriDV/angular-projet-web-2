@@ -55,7 +55,7 @@ export class ApibieroService {
         return this.http.post<IProduit>(this.url+'bouteille/bouteille/'+ data.id, data, httpOption);
     }
 
-    /** PUT requête pour ajouter la bouteille dans le cellier */
+    /** ---- DMITRIY --- PUT requête pour ajouter la bouteille dans le cellier */
     ajouterBouteille(data:IProduit):Observable<any>{
         let httpOption = {
             headers : new HttpHeaders({
@@ -63,7 +63,7 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })
         };
-        return this.http.put<IProduit>(this.url+'/bouteille', data, httpOption);
+        return this.http.put<IProduit>(this.url+'cellier/bouteille', data, httpOption);
     }
 
     /** GET requête pour afficher la gamme de bouteilles importées de la SAQ */
@@ -83,18 +83,6 @@ export class ApibieroService {
         return this.http.put<IListeProduit>(this.url+'cellier/cellier/'+data.id_cellier+"/"+data.id_bouteille+"/"+data.id_achats+"/quantite/",httpOption);
     }
 
-        /** SUPPRIMER ***************************************************************************/
-    /** PUT requête pour augmanter la quantité de bouteilles avec le même id dans le cellier */
-    //getBouteillesCellierQuantiteAjoutee(data:IProduit):Observable<IListeProduit>{
-    //     let httpOption = {
-    //         headers : new HttpHeaders({
-    //             'Content-type' : 'application/json',
-    //             'Authorization' : 'Basic '+ btoa("biero:biero")
-    //         })                                                                                                    
-    //     };                                                                                                                  
-    //     return this.http.put<IListeProduit>(this.url+'/bouteille/bouteille/'+data.id_bouteille_cellier+"/quantite/",httpOption);
-    //}
-    
     /** PUT requête pour reduire la quantité de bouteilles avec le même id dans le cellier */
     deleteBouteillesCellierQuantiteAjoutee(data:IProduit):Observable<IListeProduit>{
         let httpOption = {
@@ -105,18 +93,6 @@ export class ApibieroService {
         };                                                                                                                 
         return this.http.delete<IListeProduit>(this.url+'cellier/cellier/'+data.id_cellier+"/"+data.id_bouteille+"/"+data.id_achats+"/quantite/",httpOption);
     }
-
-    /** SUPPRIMER ***************************************************************************/
-    /** PUT requête pour reduire la quantité de bouteilles avec le même id dans le cellier */
-    //deleteBouteillesCellierQuantiteAjoutee(data:IProduit):Observable<IListeProduit>{
-    //    let httpOption = {
-    //        headers : new HttpHeaders({
-    //            'Content-type' : 'application/json',
-    //            'Authorization' : 'Basic '+ btoa("biero:biero")
-    //        })                                                                                               
-    //    };                                                                                                                 
-    //    return this.http.delete<IListeProduit>(this.url+'bouteille/bouteille/'+data.id_bouteille_cellier+"/quantite/",httpOption);
-    //}
 
     /** GET requête pour afficher la bouteille */
     getBouteille(id:number|string):Observable<IProduit>{

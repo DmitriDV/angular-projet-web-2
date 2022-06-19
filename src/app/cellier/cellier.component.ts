@@ -21,6 +21,7 @@ import { Params } from '@angular/router';
   templateUrl: './cellier.component.html',
   styleUrls: ['./cellier.component.scss']
 })
+    
 export class CellierComponent implements OnInit {
     bouteille !: IProduit;
     cellierData: string;

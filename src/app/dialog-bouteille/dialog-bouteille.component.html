@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Ajouter une bouteille</h1>
 <div mat-dialog-content>
     <form [formGroup]="creerBouteilleForm" action="">
-        <!--Select-->
+        <!--Select de la bouteille-->
         <mat-form-field>
             <mat-select [(value)]="getBouteilleId" formControlName="id_bouteille" required placeholder="Nom de la bouteille">
               <mat-option *ngFor="let bouteille of bouteilles" [value]="bouteille.id">
