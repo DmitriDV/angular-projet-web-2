@@ -13,7 +13,7 @@ import { CellierComponent } from './cellier/cellier.component';
 const routes: Routes = [
   // {path : "", component:AccueilComponent},
     { path: "bouteille", component: ListeProduitComponent }, //, canActivate:[GardienConnexionGuard]
-    { path: "cellier", component: CellierComponent }, //, canActivate:[GardienConnexionGuard]
+    { path: "cellier/:id", component: CellierComponent }, //, canActivate:[GardienConnexionGuard]
     { path: "usager", component: ProfilComponent }, //, canActivate:[GardienConnexionGuard]
     { path : "produit/:id", component:DetailsProduitComponent, canActivate:[GardienConnexionGuard] },
     { path : "", component:DialogBouteilleComponent, canActivate:[GardienConnexionGuard] },

@@ -12,8 +12,8 @@ import { ProfilComponent } from '../profil/profil.component';
 import { Observable } from 'rxjs';
 import { IListeProduit } from '../iliste-produit';
 import { DataService } from '../Data/data.service';
-
-
+import { ActivatedRoute } from '@angular/router';
+import { Params } from '@angular/router';
 
 
 @Component({
@@ -24,6 +24,7 @@ import { DataService } from '../Data/data.service';
 export class CellierComponent implements OnInit {
     bouteille !: IProduit;
     cellierData: string;
+    id: string;
 
     estEditable:boolean= false;
     
@@ -37,21 +38,32 @@ export class CellierComponent implements OnInit {
         private authServ: AuthService,
         private bieroServ: ApibieroService,
         public dialog: MatDialog,
-        private data: DataService
+        private data: DataService,
+        private route: ActivatedRoute
     ) { 
 
     }
 
     ngOnInit(): void {
-        this.getCeCellier();
-        this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
+        this.route.params.subscribe(
+            (params: Params) => {
+                console.log(params['id']);
+                this.id = params['id'];
+            }
+        );
+
+        this.cellierData = this.id;
+        //this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
+        console.log(this.cellierData);
+        
+        this.getCeCellier(this.cellierData);
         this.authServ.setTitre("Mon cellier");
     }
 
     /** Liste des bouteilles du cellier */
-    getCeCellier() {
+    getCeCellier(cellierData: string) {
         
-        this.bieroServ.getBouteillesCellier()
+        this.bieroServ.getCellierParIdEtUsager(cellierData)
         .subscribe({
             next:(res)=>{
                 this.dataSource = new MatTableDataSource(res.data);
@@ -82,21 +94,21 @@ export class CellierComponent implements OnInit {
             maxHeight: '540px',
             data:bouteille
         }).afterClosed().subscribe(res=>{
-            this.getCeCellier();
+            this.getCeCellier(this.cellierData);
         });
         
     }
 
     /** Bouton Ajouter une bouteille */
     openDialog(): void {
-        this.getCeCellier();
+        this.getCeCellier(this.cellierData);
         this.dialog.open(DialogBouteilleComponent, {
             width: '100%',
             maxWidth: '370px',
             maxHeight: '540px',
             data: this.bouteille
         }).afterClosed().subscribe(res=>{
-            this.getCeCellier();
+            this.getCeCellier(this.cellierData);
         });
     }
 

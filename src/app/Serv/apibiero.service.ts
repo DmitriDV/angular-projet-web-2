@@ -22,9 +22,16 @@ export class ApibieroService {
 
     /** GET requête pour afficher les bouteilles du cellier */
     getBouteillesCellier(): Observable<IListeProduit>{
-        let a = this.http.get<IListeUsager>(this.url + 'bouteille');
+        let a = this.http.get<IListeUsager>(this.url+'bouteille');
         console.log(a);
         return this.http.get<IListeProduit>(this.url+'bouteille');
+    }
+
+    /** ---- DMITRIY --- GET requête pour afficher les bouteilles du cellier -------*/
+    getCellierParIdEtUsager(id: any): Observable<IListeProduit>{
+        let a = this.http.get<IListeUsager>(this.url+'cellier/cellier/'+id);
+        console.log(a);
+        return this.http.get<IListeProduit>(this.url+'cellier/cellier/'+id);
     }
 
     /** GET requête pour afficher les celliers */

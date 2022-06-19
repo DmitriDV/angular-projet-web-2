@@ -47,16 +47,16 @@ export class ProfilComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
+        //this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
 
         this.getMesCelliers();
         this.getMonProfil();
         this.authServ.setTitre("Mes celliers");
     }
 
-    newCellierData(idCellier: string) {
-        this.data.changeCellier(idCellier);
-    }
+    //newCellierData(idCellier: string) {
+    //    this.data.changeCellier(idCellier);
+    //}
 
     /** Liste des celliers d'usager */
     getMesCelliers(){
