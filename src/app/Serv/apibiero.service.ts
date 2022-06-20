@@ -56,16 +56,16 @@ export class ApibieroService {
     }
 
     /** ---- DMITRIY --- PUT requête pour ajouter la bouteille dans le cellier */
-    ajouterBouteille(data:IProduit):Observable<any>{
+    ajouterBouteille(data: IProduit): Observable<any>{
+        console.log(data);
         let httpOption = {
             headers : new HttpHeaders({
                 'Content-type' : 'application/json',
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })
         };
-        console.log(data);
-        
-        return this.http.put<IProduit>(this.url+'cellier/bouteille', data, httpOption);
+                
+        return this.http.put<IProduit>(this.url+'cellier/'+data.id_cellier+'/ajout', data, httpOption);
     }
 
     /** GET requête pour afficher la gamme de bouteilles importées de la SAQ */
