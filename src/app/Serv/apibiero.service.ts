@@ -63,13 +63,15 @@ export class ApibieroService {
                 'Authorization' : 'Basic '+ btoa("biero:biero")
             })
         };
+        console.log(data);
+        
         return this.http.put<IProduit>(this.url+'cellier/bouteille', data, httpOption);
     }
 
     /** GET requête pour afficher la gamme de bouteilles importées de la SAQ */
     getListeBouteilles():Observable<IListeProduit>{
 
-        return this.http.get<IListeProduit>(this.url+'bouteille/'+'bouteilles');
+        return this.http.get<IListeProduit>(this.url+'bouteille/bouteilles');
     }
 
     /** PUT requête pour augmanter la quantité de bouteilles avec le même id dans le cellier */

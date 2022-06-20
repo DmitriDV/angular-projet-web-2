@@ -28,11 +28,11 @@ import { DataService } from '../Data/data.service';
 export class ProfilComponent implements OnInit {
     usager !:Array<IUsager>;
     cellier !: ICellier;
-
+    //cellierData: string;
 
     displayedColumnsCellier: string[] = ["nom", "adresse", "action"];
     dataSourceCellier !: MatTableDataSource<ICellier>;
-    cellierData: string;
+    
     
     @ViewChild(MatPaginator) paginator !: MatPaginator;
     @ViewChild(MatSort) sort !: MatSort;

@@ -35,11 +35,12 @@ export class DialogBouteilleComponent implements OnInit {
     anneeRegex = /^(18|19|20)[\d]{2,2}$/;
 
     ngOnInit(): void {
+        this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
         /** Obtenir une nomenclature des bouteilles importées de la SAQ */
         this.bieroServ.getListeBouteilles().subscribe((data: any) => { this.bouteilles = data.data; })
         
-        this.data.ceCellierData.subscribe(cellierData => this.id_cellier = cellierData);
-        console.log(this.id_cellier);
+        //this.data.ceCellierData.subscribe(cellierData => this.id_cellier = cellierData);
+        console.log(this.cellierData);
         
         /** Forme et validation des données saisies */
         this.creerBouteilleForm = this.formBuilder.group({
@@ -54,12 +55,15 @@ export class DialogBouteilleComponent implements OnInit {
     }
 
     /** Fonction pour ajouter une bouteille au cellier */
-    ajouterBouteille(): void{        
+    ajouterBouteille(): void{   
+        this.id_cellier = this.cellierData;
+        console.log(this.id_cellier);
+        
         if (this.creerBouteilleForm.valid) {
             this.creerBouteilleForm.value.id_bouteille = this.getBouteilleId;
             let bouteilles: any = this.creerBouteilleForm.value;
-            bouteilles.value.id_cellier = this.id_cellier;
-            console.log(this.id_cellier);
+            bouteilles.id_cellier = this.id_cellier;
+            console.log(bouteilles);
             
             this.bieroServ.ajouterBouteille(bouteilles).subscribe({
                 next:(reponse)=>{

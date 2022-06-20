@@ -46,20 +46,26 @@ export class CellierComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
+        console.log(this.cellierData);
+
         this.route.params.subscribe(
             (params: Params) => {
                 console.log(params['id']);
                 this.id = params['id'];
             }
         );
-
         this.cellierData = this.id;
-        //this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
-        console.log(this.cellierData);
-        
-        this.getCeCellier(this.cellierData);
+        this.newCellierData(this.cellierData);
+        this.getCeCellier(this.id);
         this.authServ.setTitre("Mon cellier");
     }
+
+
+    newCellierData(cellierData: string) {
+        this.data.changeCellier(cellierData);
+    }
+
 
     /** Liste des bouteilles du cellier */
     getCeCellier(cellierData: string) {
