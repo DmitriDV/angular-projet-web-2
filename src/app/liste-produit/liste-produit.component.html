@@ -56,6 +56,9 @@
                     <button class="liste__btn" routerLink="" (click)="editDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
                         <mat-icon>edit</mat-icon>
                     </button>
+                    <button class="liste__btn" (click)="deleteDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

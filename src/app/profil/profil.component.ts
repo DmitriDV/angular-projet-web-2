@@ -17,6 +17,7 @@ import { IProduit } from '../iproduit';
 import { ICellier } from './../icellier';
 import { IListeUsager } from './../iliste-usager';
 import { DataService } from '../Data/data.service';
+import { IUser } from '../iuser';
 
 
 
@@ -26,7 +27,7 @@ import { DataService } from '../Data/data.service';
   styleUrls: ['./profil.component.scss']
 })
 export class ProfilComponent implements OnInit {
-    usager !:Array<IUsager>;
+    usager !:IUser;
     cellier !: ICellier;
     //cellierData: string;
 
@@ -94,7 +95,7 @@ export class ProfilComponent implements OnInit {
         this.bieroServ.getProfil()
         .subscribe({
             next:(res)=>{
-                this.usager = res.data;
+                this.usager = res;
                 console.log(this.usager);
 
             },

@@ -33,6 +33,9 @@ import { DialogModifUsagerComponent } from './dialog-modif-usager/dialog-modif-u
 import { DialogSupprimCellierComponent } from './dialog-supprim-cellier/dialog-supprim-cellier.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+import { DialogLoginComponent } from './dialog-login/dialog-login.component';
+import { DialogRegisterComponent } from './dialog-register/dialog-register.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +53,10 @@ import { MatListModule } from '@angular/material/list';
         DialogModifMotPasseComponent,
         DialogAjoutCellierComponent,
         DialogModifUsagerComponent,
-        DialogSupprimCellierComponent
+        DialogSupprimCellierComponent,
+        DialogDeleteComponent,
+        DialogLoginComponent,
+        DialogRegisterComponent
     ],
     entryComponents:[DialogAjoutBouteilleComponent],
     imports: [

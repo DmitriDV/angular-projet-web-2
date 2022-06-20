@@ -7,6 +7,7 @@ import { ICellier } from '../icellier';
 import { IUsager } from '../iusager';
 import { IListeCellier } from '../iliste-cellier';
 import { IListeUsager } from '../iliste-usager';
+import { IUser } from '../iuser';
 
 
 @Injectable({
@@ -18,19 +19,22 @@ export class ApibieroService {
     url:string = "http://127.0.0.1:8000/webservice/php/";
     //urlCellier:string = "http://127.0.0.1:8000/webservice/php/cellier/";
     //urlUsager:string = "http://127.0.0.1:8000/webservice/php/usager/";
-    constructor(private http:HttpClient) { }
+    constructor(private http: HttpClient) { }
+    
+    /** GET requête pour afficher les bouteilles du cellier */
+    register(data: IUser): Observable<IUser>{
+        console.log(data);
+        
+        return this.http.put<IUser>(this.url+'usager/register', data);
+    }
 
     /** GET requête pour afficher les bouteilles du cellier */
     getBouteillesCellier(): Observable<IListeProduit>{
-        let a = this.http.get<IListeUsager>(this.url+'bouteille');
-        console.log(a);
         return this.http.get<IListeProduit>(this.url+'bouteille');
     }
 
     /** ---- DMITRIY --- GET requête pour afficher les bouteilles du cellier */
     getCellierParIdEtUsager(id: any): Observable<IListeProduit>{
-        let a = this.http.get<IListeUsager>(this.url+'cellier/cellier/'+id);
-        console.log(a);
         return this.http.get<IListeProduit>(this.url+'cellier/cellier/'+id);
     }
 
@@ -40,8 +44,8 @@ export class ApibieroService {
     }
 
     /** GET requête pour afficher le profil */
-    getProfil():Observable<IUsager>{
-        return this.http.get<IUsager>(this.url+'usager/usager');
+    getProfil():Observable<IUser>{
+        return this.http.get<IUser>(this.url+'usager/usager');
     }
 
     /** POST requête pour modifier la bouteille dans le cellier */
@@ -55,6 +59,11 @@ export class ApibieroService {
         return this.http.post<IProduit>(this.url+'bouteille/bouteille/'+ data.id, data, httpOption);
     }
 
+    /** ---- Louis-Etienne, Vsevolod ---- DELETE requête pour supprimer la bouteille dans le cellier */
+    effacerBouteille(id_bouteille:string, id_cellier:string):Observable<any>{
+        return this.http.delete<IProduit>(this.url+'cellier/cellier/'+id_cellier+'/'+id_bouteille+'/suppression' );
+    }
+
     /** ---- DMITRIY --- PUT requête pour ajouter la bouteille dans le cellier */
     ajouterBouteille(data: IProduit): Observable<any>{
         console.log(data);
@@ -65,7 +74,7 @@ export class ApibieroService {
             })
         };
                 
-        return this.http.put<IProduit>(this.url+'cellier/'+data.id_cellier+'/ajout', data, httpOption);
+        return this.http.put<IProduit>(this.url+'cellier/cellier/'+data.id_cellier+'/ajout', data, httpOption);
     }
 
     /** GET requête pour afficher la gamme de bouteilles importées de la SAQ */

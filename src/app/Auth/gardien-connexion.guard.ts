@@ -12,7 +12,7 @@ export class GardienConnexionGuard implements CanActivate {
     this.authServ.statut().subscribe((bLogin)=>{
       this.etatLogin = bLogin;
       if(this.etatLogin == false){
-        this.router.navigate(["/"]);
+        this.router.navigate([""]);
       }
     })
 
