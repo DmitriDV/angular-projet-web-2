@@ -4,7 +4,7 @@ import { IProduit } from '../iproduit';
 import { ApibieroService } from '../Serv/apibiero.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogModifComponent } from '../dialog-modif/dialog-modif.component';
-import { DialogBouteilleComponent } from '../dialog-bouteille/dialog-bouteille.component';
+import { DialogAjoutBouteilleComponent } from '../dialog-ajout-bouteille/dialog-ajout-bouteille.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -109,7 +109,7 @@ export class CellierComponent implements OnInit {
     /** Bouton Ajouter une bouteille */
     openDialog(): void {
         this.getCeCellier(this.cellierData);
-        this.dialog.open(DialogBouteilleComponent, {
+        this.dialog.open(DialogAjoutBouteilleComponent, {
             width: '100%',
             maxWidth: '370px',
             maxHeight: '540px',

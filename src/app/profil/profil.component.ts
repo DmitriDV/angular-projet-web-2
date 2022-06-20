@@ -3,7 +3,7 @@ import { AuthService } from '../Auth/auth.service';
 import { ApibieroService } from '../Serv/apibiero.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogModifComponent } from '../dialog-modif/dialog-modif.component';
-import { DialogBouteilleComponent } from '../dialog-bouteille/dialog-bouteille.component';
+import { DialogAjoutBouteilleComponent } from '../dialog-ajout-bouteille/dialog-ajout-bouteille.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';

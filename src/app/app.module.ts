@@ -19,7 +19,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogBouteilleComponent } from './dialog-bouteille/dialog-bouteille.component';
+import { DialogAjoutBouteilleComponent } from './dialog-ajout-bouteille/dialog-ajout-bouteille.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -42,7 +42,7 @@ import { MatListModule } from '@angular/material/list';
         EnteteComponent,
         NonTrouveComponent,
         DetailsProduitComponent,
-        DialogBouteilleComponent,
+        DialogAjoutBouteilleComponent,
         DialogModifComponent,
         CellierComponent,
         ProfilComponent,
@@ -52,7 +52,7 @@ import { MatListModule } from '@angular/material/list';
         DialogModifUsagerComponent,
         DialogSupprimCellierComponent
     ],
-    entryComponents:[DialogBouteilleComponent],
+    entryComponents:[DialogAjoutBouteilleComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

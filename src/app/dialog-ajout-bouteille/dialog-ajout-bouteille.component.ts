@@ -6,12 +6,12 @@ import { IProduit } from '../iproduit';
 import { DataService } from '../Data/data.service';
 
 @Component({
-    selector: 'app-dialog-bouteille',
-    templateUrl: './dialog-bouteille.component.html',
-    styleUrls: ['./dialog-bouteille.component.scss']
+    selector: 'app-dialog-ajout-bouteille',
+    templateUrl: './dialog-ajout-bouteille.component.html',
+    styleUrls: ['./dialog-ajout-bouteille.component.scss']
 })
     
-export class DialogBouteilleComponent implements OnInit {
+export class DialogAjoutBouteilleComponent implements OnInit {
     @Input() bouteille!:IProduit;
     creerBouteilleForm!:FormGroup;
     bouteilles: any;
@@ -21,7 +21,7 @@ export class DialogBouteilleComponent implements OnInit {
 
     constructor(
                     private formBuilder: FormBuilder,
-                    public dialogRef: MatDialogRef<DialogBouteilleComponent>,
+                    public dialogRef: MatDialogRef<DialogAjoutBouteilleComponent>,
                     @Inject(MAT_DIALOG_DATA) bouteille: IProduit,
                     private bieroServ: ApibieroService,
                     private data: DataService

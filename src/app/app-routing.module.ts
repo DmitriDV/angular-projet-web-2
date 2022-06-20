@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
 import { GardienConnexionGuard } from './Auth/gardien-connexion.guard';
-import { DialogBouteilleComponent } from './dialog-bouteille/dialog-bouteille.component';
+import { DialogAjoutBouteilleComponent } from './dialog-ajout-bouteille/dialog-ajout-bouteille.component';
 import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
 import { DetailsProduitComponent } from './details-produit/details-produit.component';
 import { ListeProduitComponent } from './liste-produit/liste-produit.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: "cellier/:id", component: CellierComponent }, //, canActivate:[GardienConnexionGuard]
     { path: "usager", component: ProfilComponent }, //, canActivate:[GardienConnexionGuard]
     { path : "produit/:id", component:DetailsProduitComponent, canActivate:[GardienConnexionGuard] },
-    { path : "", component:DialogBouteilleComponent, canActivate:[GardienConnexionGuard] },
+    { path : "", component:DialogAjoutBouteilleComponent, canActivate:[GardienConnexionGuard] },
     { path : "modifier/:id", component:DialogModifComponent, canActivate:[GardienConnexionGuard] },
     { path : "**", component:NonTrouveComponent },
 
