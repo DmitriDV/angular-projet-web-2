@@ -15,5 +15,6 @@ export interface IProduit {
     code_saq:string;
     url_saq:string;
     pays:string;
-    description:string;
+    description: string;
+    id_usager: string;
 }

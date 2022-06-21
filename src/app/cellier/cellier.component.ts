@@ -57,7 +57,7 @@ export class CellierComponent implements OnInit {
         );
         this.cellierData = this.id;
         this.newCellierData(this.cellierData);
-        this.getCeCellier(this.id);
+        this.getCeCellier();
         this.authServ.setTitre("Mon cellier");
     }
 
@@ -68,9 +68,9 @@ export class CellierComponent implements OnInit {
 
 
     /** Liste des bouteilles du cellier */
-    getCeCellier(cellierData: string) {
-        
-        this.bieroServ.getCellierParIdEtUsager(cellierData)
+    getCeCellier() {
+        const id_usager = sessionStorage.id_usager;
+        this.bieroServ.getCellierParIdEtUsager(this.cellierData, id_usager)
         .subscribe({
             next:(res)=>{
                 this.dataSource = new MatTableDataSource(res.data);
@@ -101,21 +101,21 @@ export class CellierComponent implements OnInit {
             maxHeight: '540px',
             data:bouteille
         }).afterClosed().subscribe(res=>{
-            this.getCeCellier(this.cellierData);
+            this.getCeCellier();
         });
         
     }
 
     /** Bouton Ajouter une bouteille */
     openDialog(): void {
-        this.getCeCellier(this.cellierData);
+        this.getCeCellier();
         this.dialog.open(DialogAjoutBouteilleComponent, {
             width: '100%',
             maxWidth: '370px',
             maxHeight: '540px',
             data: this.bouteille
         }).afterClosed().subscribe(res=>{
-            this.getCeCellier(this.cellierData);
+            this.getCeCellier();
         });
     }
 

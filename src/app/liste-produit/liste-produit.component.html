@@ -47,13 +47,13 @@
             <ng-container matColumnDef="action">
                 <th class="centre" mat-header-cell *matHeaderCellDef>Action</th>
                 <td class="centre buttons" mat-cell *matCellDef="let bouteille"> 
-                    <button class="liste__btn" routerLink="" (click)="ajouterQuantiteBouteilleCellier(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
+                    <button class="liste__btn"  (click)="ajouterQuantiteBouteilleCellier(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
                         <mat-icon>add</mat-icon>
                     </button>
-                    <button class="liste__btn" routerLink="" (click)="boireQuantiteBouteilleCellier(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
+                    <button class="liste__btn"  (click)="boireQuantiteBouteilleCellier(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
                     <mat-icon>remove</mat-icon>
                     </button>
-                    <button class="liste__btn" routerLink="" (click)="editDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
+                    <button class="liste__btn"  (click)="editDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
                         <mat-icon>edit</mat-icon>
                     </button>
                     <button class="liste__btn" (click)="deleteDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">

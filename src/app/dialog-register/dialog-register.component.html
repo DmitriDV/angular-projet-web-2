@@ -3,8 +3,28 @@
     <form [formGroup]="registerForm" action="">
         <!--Inputs-->
         <mat-form-field appearance="outline">
+            <mat-label>Nom :</mat-label>
+            <input matInput formControlName="nom" placeholder="Entrer votre nom">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Prénom :</mat-label>
+            <input matInput formControlName="prenom" placeholder="Entrer votre prenom">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Courriel :</mat-label>
             <input matInput formControlName="courriel" placeholder="Entrer votre courriel">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Phone :</mat-label>
+            <input matInput formControlName="phone" placeholder="Entrer votre phone">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Adresse :</mat-label>
+            <input matInput formControlName="adresse" placeholder="Entrer votre adresse">
             <mat-hint></mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">

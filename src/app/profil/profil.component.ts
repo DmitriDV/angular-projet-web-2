@@ -17,7 +17,6 @@ import { IProduit } from '../iproduit';
 import { ICellier } from './../icellier';
 import { IListeUsager } from './../iliste-usager';
 import { DataService } from '../Data/data.service';
-import { IUser } from '../iuser';
 
 
 
@@ -27,7 +26,7 @@ import { IUser } from '../iuser';
   styleUrls: ['./profil.component.scss']
 })
 export class ProfilComponent implements OnInit {
-    usager !:IUser;
+    usager !:Array<IUsager>;
     cellier !: ICellier;
     //cellierData: string;
 
@@ -60,8 +59,9 @@ export class ProfilComponent implements OnInit {
     //}
 
     /** Liste des celliers d'usager */
-    getMesCelliers(){
-        this.bieroServ.getCelliers()
+    getMesCelliers() {
+        const id_usager = sessionStorage.id_usager;
+        this.bieroServ.getCelliers(id_usager)
         .subscribe({
             next:(res)=>{
                 this.dataSourceCellier = new MatTableDataSource(res.data);
@@ -91,11 +91,11 @@ export class ProfilComponent implements OnInit {
 
     /** Liste d'information d'usager */
     getMonProfil() {
-
-        this.bieroServ.getProfil()
+        const id_usager = sessionStorage.id_usager;
+        this.bieroServ.getProfil(id_usager)
         .subscribe({
             next:(res)=>{
-                this.usager = res;
+                this.usager = res.data;
                 console.log(this.usager);
 
             },

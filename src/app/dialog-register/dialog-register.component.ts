@@ -29,7 +29,6 @@ export class DialogRegisterComponent implements OnInit {
                     private authServ: AuthService,
                     private bieroServ: ApibieroService,
                     public dialog: MatDialog
-
                 ) { }
 
     /** Modèles d'expression régulière */
@@ -38,9 +37,14 @@ export class DialogRegisterComponent implements OnInit {
     //confirmRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     
     /** Test version */
+    nomRegex = /[^\s]/;
+    prenomRegex = /[^\s]/;
     courrielRegex = /[^\s]/;
+    phoneRegex = /[^\s]/;
+    adresseRegex = /[^\s]/;
     passwordRegex = /[^\s]/;   
     confirmRegex = /[^\s]/;
+
 
     ngOnInit(): void {
         /** Obtenir une nomenclature des bouteilles importées de la SAQ */
@@ -48,7 +52,11 @@ export class DialogRegisterComponent implements OnInit {
 
         /** Forme et validation des données saisies */
         this.registerForm = this.formBuilder.group({
+            nom: ['', [Validators.required, Validators.pattern(this.nomRegex)]],
+            prenom: ['', [Validators.required, Validators.pattern(this.prenomRegex)]],
             courriel: ['', [Validators.required, Validators.pattern(this.courrielRegex)]],
+            phone: ['', [Validators.required, Validators.pattern(this.phoneRegex)]],
+            adresse: ['', [Validators.required, Validators.pattern(this.adresseRegex)]],
             mot_passe: ['', [Validators.required, Validators.pattern(this.passwordRegex)]],
             confirmpassword: ['',  [Validators.required, Validators.pattern(this.confirmRegex)]],
         })

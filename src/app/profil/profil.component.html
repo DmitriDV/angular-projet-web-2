@@ -54,23 +54,23 @@
         </mat-tab>
         <!--Liste d'information personnelle'-->
         <mat-tab label="Mes informations">
-            <ng-container >
+            <ng-container *ngFor="let unUsager of usager">
             <mat-card class="card" >
                 <mat-card-header>
-                    <img mat-card-avatar="" class="mat-card-avatar header-image" src="{{usager.image_url}}" alt="{{usager.nom}}">
-                    <mat-card-title>{{usager.nom}}</mat-card-title>
-                    <mat-card-subtitle>{{usager.courriel}}</mat-card-subtitle>
+                    <img mat-card-avatar="" class="mat-card-avatar header-image" src="{{unUsager.image_url}}" alt="{{unUsager.usager_nom}}">
+                    <mat-card-title>{{unUsager.usager_nom}}</mat-card-title>
+                    <mat-card-subtitle>{{unUsager.courriel}}</mat-card-subtitle>
                 </mat-card-header>
                
                 <mat-card-content >
                     <p>
-                        Phone : {{usager.phone}}
+                        Phone : {{unUsager.phone}}
                     </p>
                     <p>
-                        Adresse : {{usager.adresse}}
+                        Adresse : {{unUsager.usager_adresse}}
                     </p>
                     <p>
-                        Ville : {{usager.nom}}
+                        Ville : {{unUsager.nom}}
                     </p>
                 </mat-card-content>
                 <mat-card-actions>
@@ -79,10 +79,7 @@
                 </mat-card-actions>
             </mat-card>
         </ng-container>
-
-
-
-            
+           
         </mat-tab>
     </mat-tab-group>
  

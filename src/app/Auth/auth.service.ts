@@ -38,11 +38,14 @@ export class AuthService {
 //     return this.http.get<IUser>(this.url);
 // }
 
-  setConnexion(etatConnexion:boolean):void {
-    this.etatConnexion = etatConnexion;
-    sessionStorage.setItem("estConnecte", this.etatConnexion.toString());
-    this.estConnecte.next(etatConnexion);
-  }
+    setConnexion(etatConnexion:boolean):void {
+        this.etatConnexion = etatConnexion;
+                
+        sessionStorage.setItem("estConnecte", this.etatConnexion.toString());
+        
+        console.log(sessionStorage);
+        this.estConnecte.next(etatConnexion);
+    }
 
   getConnexion():boolean {
     return this.etatConnexion;

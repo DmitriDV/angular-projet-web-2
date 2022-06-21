@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit, Input} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, Inject, OnInit, Input } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApibieroService } from '../Serv/apibiero.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IProduit } from '../iproduit';
@@ -50,10 +50,12 @@ export class DialogModifComponent implements OnInit {
     }
 
     /** Envoi de nouvelles données du formulaire vers la base de données */
-    modifierBiere():void{
-        if(this.modifierBouteilleForm.valid){
-            let bouteille: IProduit = this.modifierBouteilleForm.value;  
-            bouteille.id = this.editData.id_cellier;
+    modifierBouteille():void{
+        if (this.modifierBouteilleForm.valid) {
+            const id_usager = sessionStorage.id_usager;
+            const bouteille: IProduit = this.modifierBouteilleForm.value;  
+            bouteille.id_cellier = this.editData.id_cellier;
+            bouteille.id_usager = id_usager;
             this.bieroServ.modifierBouteille(bouteille).subscribe({
             next:(reponse)=>{
                 this.dialogRef.close('mod');  

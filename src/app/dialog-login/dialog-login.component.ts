@@ -66,12 +66,17 @@ export class DialogLoginComponent implements OnInit {
                 //     this.authServ.setConnexion(this.estConnecte);
                 //     this.onNoClick();
                 // });
+                console.log(user);
+                
                 if(user){
                     //changer l'etat de la connexion dans le service
                     this.authServ.setConnexion(!this.estConnecte);
                     this.loginForm.reset();
+                    sessionStorage.setItem("id_usager", user.id);
+                    console.log(sessionStorage.id_usager);
+                    
                     this.authServ.setTitre('Mon cellier');
-                    this.router.navigateByUrl("/liste");
+                    this.router.navigateByUrl("/usager");
                     this.onNoClick();
                 } else {
                     alert("Utilisateur non trouvé")

@@ -4,6 +4,7 @@ import { ApibieroService } from '../Serv/apibiero.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IProduit } from '../iproduit';
 import { DataService } from '../Data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dialog-ajout-bouteille',
@@ -24,8 +25,8 @@ export class DialogAjoutBouteilleComponent implements OnInit {
                     public dialogRef: MatDialogRef<DialogAjoutBouteilleComponent>,
                     @Inject(MAT_DIALOG_DATA) bouteille: IProduit,
                     private bieroServ: ApibieroService,
-                    private data: DataService
-                    
+                    private data: DataService,
+                    private router: Router
                 ) { }
 
     /** Modèles d'expression régulière */
@@ -63,10 +64,12 @@ export class DialogAjoutBouteilleComponent implements OnInit {
             this.creerBouteilleForm.value.id_bouteille = this.getBouteilleId;
             let bouteilles: any = this.creerBouteilleForm.value;
             bouteilles.id_cellier = this.id_cellier;
+            let id_cellier = bouteilles.id_cellier
             console.log(bouteilles);
             
             this.bieroServ.ajouterBouteille(bouteilles).subscribe({
-                next:(reponse)=>{
+                next: (reponse) => {
+                    //this.router.navigateByUrl('cellier/'.this.id_cellier);
                     this.dialogRef.close('add');  
                 },
                 error:(reponse)=>{
